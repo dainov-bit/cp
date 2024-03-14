@@ -67,9 +67,22 @@ public class Organization {
      * Метод, который выполняет очистку работников
      */
     public void clear() {
-        /* Метод нужно реализовать */
+        this.worker.clear();
     }
-
+/**
+ * Следующий метод выводит статистику о предприятии
+ */
+public void statistic() {
+    double salary = 0;
+    int count = 0;
+    Iterator<Worker> i = this.idIterator();
+while (i.hasNext()) {
+    Worker obj = i.next();
+    salary += obj.getSalary();
+    count++;
+}
+System.out.println("В нашем предприятии работает "+count+" "+Tools.changeWord(count,",","работник,работника,работников")+"\nОбщая сумма всех зарплат: "+salary);
+}
     /**
      * Метод, который добавляет нового пользователя в HashSet.
      * Он используется в классе App, внутри другого метода, который выполняет проверку данных

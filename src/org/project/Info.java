@@ -1,11 +1,16 @@
 package org.project;
 
+import java.util.ArrayList;
+
 interface AppInformation {  // Интерфейс AppInformation
     void workerHello();  // Метод, который необходимо переопределить в классе Info
+
     void workerInfo();   // Метод, который необходимо переопределить в классе Info
+
     void workerHelp();  // Метод, который необходимо переопределить в классе Info
 }
-public class Info implements AppInformation{
+
+public class Info implements AppInformation {
 
     @Override
     public void workerHello() {           // Переопределённый метод workerHello выводит информацию о доступных действиях пользователя
@@ -18,18 +23,7 @@ public class Info implements AppInformation{
 
     }
 
-    /**
-     * Этот метод нужно доделать.
-     * Совет
-     * В классе Tools Есть метод changeWord, который умеет изменять окончание слов.
-     * Примените его к количеству работников, чтобы выводило примерно такое
-     * 1 работник, 2 работника, 5 работников
-     * Так же посчитайте сумму всех зарплат и выводите в этом методе.
-     *
-     */
-    public void statistic() {
-        System.out.println("Статистика: 5 "+Tools.changeWord(5,",","работник,работника,работников"));
-}
+
     @Override
     public void workerInfo() {              // Переопределённый метод workerInfo выводит информацию о коллекции
         System.out.println("Приложение, worker-manager, позволяет вам решать минимальные задачи в управлении вашими сотрудниками предприятия.");
@@ -42,18 +36,29 @@ public class Info implements AppInformation{
     }
 
     @Override
-    public void workerHelp() {                // Переопределённый метод workerHelp выводит информацию о доступных пользователю командах
-        System.out.println("info: вывести информацию о коллекции работников");
-        System.out.println("show: вывести все элементы коллекции работников");
-        System.out.println("add: добавить новый элемент в коллекцию работников");
-        System.out.println("update (id): обновить элемент коллекции работников");
-        System.out.println("remove_by_id: удалить элемент по id");
-        System.out.println("clear: очистить коллекцию работников");
-        System.out.println("exit: завершить программу(без сохранения)");
-        System.out.println("add_if_max: добавить новый элемент в коллекцию работников");
-        System.out.println("remove_lower: удалить из коллекции работников все элементы");
-        System.out.println("sum_of_salary: вывести сумму значений зарплат");
-        System.out.println("filter_starts_with_name: вывести элементы, значение поля name");
-        System.out.println("print_field_ascending_status: вывести значения поля status всех элементов в порядке возрастания");
+    public void workerHelp() {
+        ArrayList<String> commands = new ArrayList<>();
+        commands.add("info: вывести информацию о коллекции работников");
+        commands.add("show: вывести все элементы коллекции работников");
+        commands.add("mode new - добавить работника в коллекцию");
+        commands.add("mode edit - редактирование работника");
+        commands.add("sort id - сортировка работников по id");
+        commands.add("sort salary - сортировка работников по зарплатам");
+        commands.add("help - справка");
+        commands.add("statistic - статистика приложения о работниках");
+        commands.add("mode search - поиск работника");
+        commands.add("mode clear - удалить всех работников");
+        commands.add("mode delete - удалить работника по id");
+        commands.add("yes - подтверждает действие");
+        commands.add("no - отменяет действие");
+        commands.add("stop - покинуть редактор информации");
+        commands.add("exit - выход из приложения");
+        commands.add("back - вернуться назад");
+        commands.add("index - главный activity");
+
+        for (String command : commands) {
+            System.out.println(command);
+        }
     }
+
 }
