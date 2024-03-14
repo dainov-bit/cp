@@ -123,10 +123,28 @@ public class Organization {
         } else {
             i = this.worker.iterator();
         }
+        /* Переменные для поиска */
+        int query_length = query.length(); // длина строки для поиска
+        int count_result = 0; // счетчик для результата поиска
         while (i.hasNext()) {
             Worker w = i.next();
-            System.out.println("Работник: " + w.getName() + "\nДолжность: " + w.getStatus() + "\nЗарплата: " + w.getSalary() + "\nID: " + w.getId() + "\n");
+            if ("search".equals(type)) {
+                // Эта область если мы в режиме поиска
+                if (query.equals(w.getName().substring(0, query_length).toLowerCase())) {
+                    // тут сровнили строку по длине символам. Если совпало, тогда выводим результат для поиска.
+                    count_result++;
+                    System.out.println("Работник: " + w.getName() + "\nДолжность: " + w.getStatus() + "\nЗарплата: " + w.getSalary() + "\nID: " + w.getId() + "\n");
+                }
+            }
+            else{
+                // Тут блок работает, когда не в поиске
+                System.out.println("Работник: " + w.getName() + "\nДолжность: " + w.getStatus() + "\nЗарплата: " + w.getSalary() + "\nID: " + w.getId() + "\n");
+            }
         }
+        // Далее блок откроется если нужно выводить результат для поиска
+   if ("search".equals(type)) {
+       System.out.println("Результат: "+count_result+" "+Tools.changeWord(count_result,",","работник,работника,работников"));
+   }
     }
 
     /**

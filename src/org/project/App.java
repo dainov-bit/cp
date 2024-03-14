@@ -357,7 +357,12 @@ public class App {
         String[] dSplit = data.split(" ");
         if (dSplit.length > 1 && dSplit.length < 3) {
             // Далее проверяем, есть ли в этих словах специальные команды
-            if ("sort".equals(dSplit[0]) && "id".equals(dSplit[1])) {
+            if ("search".equals(dSplit[0]) && dSplit[1].length() > 0) {
+                path = "/show";
+                sort_type = "search";
+                sort_query = dSplit[1];
+                data = "";
+            } else if ("sort".equals(dSplit[0]) && "id".equals(dSplit[1])) {
                 // указываем сортировку по id
                 sort_type = "sort";
                 sort_query = "id";
